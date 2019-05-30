@@ -25,7 +25,7 @@ class SinglyLinkedList(object):
 
 
     def __init__(self):
-        """we set a head node for this singly linked list"""
+        """__head is the first node of linked list"""
         self.__head = None
 
     def find_by_value(self, value:int) -> Optional[Node]:
