@@ -56,7 +56,7 @@ class SinglyLinkedList(object):
         """
         The new node will be inserted to replace the exist head node.
         Important: python variant is a reference(like pointer) to data, and not to storage data.
-        Note: 这种操作将与输入的顺序相反，逆序
+        Note: Inverse-sequence input: 这种操作将与输入的顺序相反，逆序
         """
     def insert_to_head(self, new_node=None):
         '''
@@ -70,3 +70,15 @@ class SinglyLinkedList(object):
         if new_node != None:
             new_node.__next = self.__head
             self.__head = new_node
+
+    def insert_to_tail(self, value: int):
+        if value != None:
+            new_node = Node(value)
+
+        if self.__head == None:  # None linked list is a special case.
+            self.__head = new_node
+        else:
+            pos_node = self.__head
+            while pos_node.__next != None:
+                pos_node = pos_node.__next
+            pos_node.__next = new_node  # here before pos_node is tail
