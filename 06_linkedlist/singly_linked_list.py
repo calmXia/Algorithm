@@ -5,6 +5,7 @@
 
 Important:
     The trail node`s __next is None.
+    Python variant is a reference(like pointer) to data, and not to storage data.
 
 Author: calm.xia@gmail.com
 """
@@ -46,4 +47,25 @@ class SinglyLinkedList(object):
             node = node.__next
             pos += 1
         return node
+
+    def insert_value_to_head(self, value: int):
+        if value != None:
+            new_node = Node(value)
+            self.insert_to_head(new_node)
         
+        """
+        The new node will be inserted to replace the exist head node.
+        Important: python variant is a reference(like pointer) to data, and not to storage data.
+        """
+    def insert_to_head(self, new_node=None):
+        '''
+        if self.__head == None:
+            self.__head = new_node
+        else:
+            new_node.__next = self.__head
+            self.__head = new_node
+        '''
+        # Does it work when self.__head is None? Test it!
+        if new_node != None:
+            new_node.__next = self.__head
+            self.__head = new_node
