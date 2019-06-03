@@ -82,4 +82,4 @@ class SinglyLinkedList(object):
             while pos_node.__next != None:
                 pos_node = pos_node.__next
             new_node.__next = pos_node.__next  # here pos_node is tail
-            pos_node = new_node
+            pos_node.__next = new_node
