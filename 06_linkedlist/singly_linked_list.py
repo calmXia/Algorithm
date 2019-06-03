@@ -59,18 +59,14 @@ class SinglyLinkedList(object):
         Note: Inverse-sequence input: 这种操作将与输入的顺序相反，逆序
         """
     def insert_to_head(self, new_node=None):
-        '''
-        if self.__head == None:
-            self.__head = new_node
-        else:
-            new_node.__next = self.__head
-            self.__head = new_node
-        '''
         # Does it work when self.__head is None? Test it!
         if new_node != None:
             new_node.__next = self.__head
             self.__head = new_node
 
+        """
+        Sequence input
+        """
     def insert_to_tail(self, value: int):
         if value != None:
             new_node = Node(value)
@@ -78,8 +74,42 @@ class SinglyLinkedList(object):
         if self.__head == None:  # None linked list is a special case.
             self.__head = new_node
         else:
-            pos_node = self.__head
-            while pos_node.__next != None:
-                pos_node = pos_node.__next
-            new_node.__next = pos_node.__next  # here pos_node is tail
-            pos_node.__next = new_node
+            pos = self.__head
+            while pos.__next != None:
+                pos = pos.__next
+            new_node.__next = pos.__next  # here pos node is tail
+            pos.__next = new_node
+
+    def insert_after(self, pos: Node, value: int):
+        if value == None:
+            return
+        new_node = Node(value)
+        if pos != None:  # must check
+            new_node.__next = pos.__next
+            pos.__next = new_node
+
+    """
+    Need head
+    """
+    def insert_before(self, pos: Node, value: int):
+        if value == None:
+            return
+        new_node = Node(value)
+        if pos == None:
+            return
+        if pos == self.__head:
+            '''
+            new_node.__next = self.__head
+            self.__head = new_node
+            '''
+            self.insert_to_head(new_node)
+            return
+        else:
+            q = self.__head
+            while q != None and q.__next != pos:
+                q = q.__next
+            if q == None:  # Note: here pos is out of linked list, and q is tail-node.__next
+                return
+            new_node.__next = pos
+            q.__next = new_node
+    
