@@ -113,3 +113,23 @@ class SinglyLinkedList(object):
             new_node.__next = pos
             q.__next = new_node
     
+    def delete_by_node(self, d: Node):
+        '''
+        pos = self.__head
+        if pos == None or d == None:
+            return
+        '''
+        # the logic below is more clear than above
+        if self.__head == None or d == None:
+            return
+
+        if d == self.__head:
+            self.__head = self.__head.__next
+            return
+
+        pos = self.__head
+        while pos != None and pos.__next != d:
+            pos = pos.__next
+        if pos == None:  # d is out of list range
+            return 
+        pos.__next = pos.__next.__next
