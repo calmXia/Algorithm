@@ -133,3 +133,26 @@ class SinglyLinkedList(object):
         if pos == None:  # d is out of list range
             return 
         pos.__next = pos.__next.__next
+
+    """
+    Suppose the value is different with each other
+    """
+    def delete_by_value(self, value: int):
+        if self.__head == None or value == None:
+            return
+        pos = self.__head
+        q = None  # You should declare first
+        while pos != None and pos.__data != value:
+            q = pos
+            pos = pos.__next
+        
+        if pos == None:  # value node is out of list range
+            return
+        
+        q.__next = q.__next.__next
+        '''wangzheng, java
+        if q == None:
+            self.__head = self.__head.__next;  # calm: why?
+        else:
+            q.__next = q.__next.__next;
+        '''
