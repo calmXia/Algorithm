@@ -149,10 +149,8 @@ class SinglyLinkedList(object):
         if pos == None:  # value node is out of list range
             return
         
-        q.__next = q.__next.__next
-        '''wangzheng, java
-        if q == None:
-            self.__head = self.__head.__next;  # calm: why?
+        if pos == self.__head:  # q == None. Find value in self.__head!
+            self.__head = self.__head.__next
         else:
-            q.__next = q.__next.__next;
-        '''
+            q.__next = q.__next.__next
+
