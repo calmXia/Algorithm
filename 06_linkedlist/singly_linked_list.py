@@ -48,11 +48,13 @@ class SinglyLinkedList(object):
         """__head is the first node of linked list"""
         self.__head = None
 
+
     def find_by_value(self, value: int) -> Optional[Node]:
         node = self.__head
         while node != None and node.data != value:
             node = node.next
         return node
+
 
     def find_by_index(self, idx: int) -> Optional[Node]:
         node = self.__head
@@ -64,11 +66,13 @@ class SinglyLinkedList(object):
             pos += 1
         return node
 
+
     def insert_value_to_head(self, value: int):
         if value != None:
             new_node = Node(value)
             self.insert_to_head(new_node)
-        
+
+
         """
         The new node will be inserted to replace the exist head node.
         Important: python variant is a reference(like pointer) to data, and not to storage data.
@@ -80,21 +84,37 @@ class SinglyLinkedList(object):
             new_node.next = self.__head
             self.__head = new_node
 
+
         """
         Sequence input
         """
-    def insert_to_tail(self, value: int):
+    def insert_value_to_tail(self, value: int):
+
         if value != None:
             new_node = Node(value)
 
         if self.__head == None:  # None linked list is a special case.
             self.__head = new_node
         else:
-            pos = self.__head
-            while pos.next != None:
-                pos = pos.next
-            new_node.next = pos.next  # here pos node is tail
-            pos.next = new_node
+            self.insert_node_to_tail(new_node)
+
+
+    def insert_node_to_tail(self, new_node: Node):
+
+        if new_node == None:
+            print("Error: insert None node")
+            return
+        if self.__head == None:
+            print("Error: None list")
+            return
+
+        pos = self.__head
+        while pos.next != None:
+            pos = pos.next
+        new_node.next = pos.next  # here pos node is tail
+        pos.next = new_node
+        # self.print_all()  # debug
+
 
     def insert_after(self, pos: Node, value: int):
         if value == None:
@@ -104,9 +124,10 @@ class SinglyLinkedList(object):
             new_node.next = pos.next
             pos.next = new_node
 
-    """
-    Need head
-    """
+
+        """
+        Need head
+        """
     def insert_before(self, pos: Node, value: int):
         if value == None:
             return
@@ -128,7 +149,8 @@ class SinglyLinkedList(object):
                 return
             new_node.next = pos
             q.next = new_node
-    
+
+
     def delete_by_node(self, d: Node):
         '''
         pos = self.__head
@@ -150,9 +172,10 @@ class SinglyLinkedList(object):
             return 
         pos.next = pos.next.next
 
-    """
-    Suppose the value is different with each other
-    """
+
+	    """
+	    Suppose the value is different with each other
+	    """
     def delete_by_value(self, value: int):
         if self.__head == None or value == None:
             return
@@ -169,8 +192,8 @@ class SinglyLinkedList(object):
             self.__head = self.__head.next
         else:
             q.next = q.next.next
-    
-    
+
+
     def print_all(self):
         if self.__head == None:
             print("Error: NULL list")
@@ -181,3 +204,9 @@ class SinglyLinkedList(object):
             pos = pos.next
         print("None", end='\n')
 
+
+if __name__ == "__main__":
+    list = SinglyLinkedList()
+    for i in range(1,6):
+        list.insert_value_to_tail(i)
+    list.print_all()
