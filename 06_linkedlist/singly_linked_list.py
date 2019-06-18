@@ -50,8 +50,8 @@ class SinglyLinkedList(object):
 
     def find_by_value(self, value: int) -> Optional[Node]:
         node = self.__head
-        while node != None and node.__data != value:
-            node = node.__next
+        while node != None and node.data != value:
+            node = node.next
         return node
 
     def find_by_index(self, idx: int) -> Optional[Node]:
@@ -60,7 +60,7 @@ class SinglyLinkedList(object):
         # "node != None" can cover cases "None list" and "last node of list"
         # pos != idx is the key!
         while node != None and pos != idx:
-            node = node.__next
+            node = node.next
             pos += 1
         return node
 
@@ -74,10 +74,10 @@ class SinglyLinkedList(object):
         Important: python variant is a reference(like pointer) to data, and not to storage data.
         Note: Inverse-sequence input: 这种操作将与输入的顺序相反，逆序
         """
-    def insert_to_head(self, new_node=None):
+    def insert_to_head(self, new_node: Node):
         # Does it work when self.__head is None? Test it!
         if new_node != None:
-            new_node.__next = self.__head
+            new_node.next = self.__head
             self.__head = new_node
 
         """
@@ -91,18 +91,18 @@ class SinglyLinkedList(object):
             self.__head = new_node
         else:
             pos = self.__head
-            while pos.__next != None:
-                pos = pos.__next
-            new_node.__next = pos.__next  # here pos node is tail
-            pos.__next = new_node
+            while pos.next != None:
+                pos = pos.next
+            new_node.next = pos.next  # here pos node is tail
+            pos.next = new_node
 
     def insert_after(self, pos: Node, value: int):
         if value == None:
             return
         new_node = Node(value)
         if pos != None:  # must check
-            new_node.__next = pos.__next
-            pos.__next = new_node
+            new_node.next = pos.next
+            pos.next = new_node
 
     """
     Need head
@@ -115,19 +115,19 @@ class SinglyLinkedList(object):
             return
         if pos == self.__head:
             '''
-            new_node.__next = self.__head
+            new_node.next = self.__head
             self.__head = new_node
             '''
             self.insert_to_head(new_node)
             return
         else:
             q = self.__head
-            while q != None and q.__next != pos:
-                q = q.__next
-            if q == None:  # Note: here pos is out of linked list, and q is tail-node.__next
+            while q != None and q.next != pos:
+                q = q.next
+            if q == None:  # Note: here pos is out of linked list, and q is tail-node.next
                 return
-            new_node.__next = pos
-            q.__next = new_node
+            new_node.next = pos
+            q.next = new_node
     
     def delete_by_node(self, d: Node):
         '''
@@ -140,15 +140,15 @@ class SinglyLinkedList(object):
             return
 
         if d == self.__head:
-            self.__head = self.__head.__next
+            self.__head = self.__head.next
             return
 
         pos = self.__head
-        while pos != None and pos.__next != d:
-            pos = pos.__next
+        while pos != None and pos.next != d:
+            pos = pos.next
         if pos == None:  # d is out of list range
             return 
-        pos.__next = pos.__next.__next
+        pos.next = pos.next.next
 
     """
     Suppose the value is different with each other
@@ -158,15 +158,15 @@ class SinglyLinkedList(object):
             return
         pos = self.__head
         q = None  # You should declare first
-        while pos != None and pos.__data != value:
+        while pos != None and pos.data != value:
             q = pos
-            pos = pos.__next
+            pos = pos.next
         
         if pos == None:  # value node is out of list range
             return
         
         if pos == self.__head:  # q == None. Find value in self.__head!
-            self.__head = self.__head.__next
+            self.__head = self.__head.next
         else:
-            q.__next = q.__next.__next
+            q.next = q.next.next
 
