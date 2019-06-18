@@ -24,6 +24,22 @@ class Node(object):
         self.__data = data
         self.__next = next
 
+    @property
+    def data(self):
+        return self.__data
+
+    @data.setter
+    def data(self, data: int):
+        self.__data = data  # Note: setter method need no return!
+
+    @property
+    def next(self):
+        return self.__next
+
+    @next.setter
+    def next(self, new_node):
+        self.__next = new_node
+
 
 class SinglyLinkedList(object):
 
