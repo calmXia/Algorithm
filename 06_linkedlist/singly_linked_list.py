@@ -169,4 +169,15 @@ class SinglyLinkedList(object):
             self.__head = self.__head.next
         else:
             q.next = q.next.next
+    
+    
+    def print_all(self):
+        if self.__head == None:
+            print("Error: NULL list")
+            return
+        pos = self.__head
+        while pos != None:
+            print(str(pos.data) + "->", end='')
+            pos = pos.next
+        print("None", end='\n')
 
