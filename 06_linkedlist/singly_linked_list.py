@@ -73,23 +73,22 @@ class SinglyLinkedList(object):
             self.insert_to_head(new_node)
 
 
+    def insert_to_head(self, new_node: Node):
         """
         The new node will be inserted to replace the exist head node.
         Important: python variant is a reference(like pointer) to data, and not to storage data.
         Note: Inverse-sequence input: 这种操作将与输入的顺序相反，逆序
         """
-    def insert_to_head(self, new_node: Node):
         # Does it work when self.__head is None? Test it!
         if new_node != None:
             new_node.next = self.__head
             self.__head = new_node
 
 
+    def insert_value_to_tail(self, value: int):
         """
         Sequence input
         """
-    def insert_value_to_tail(self, value: int):
-
         if value != None:
             new_node = Node(value)
 
@@ -125,10 +124,10 @@ class SinglyLinkedList(object):
             pos.next = new_node
 
 
+    def insert_before(self, pos: Node, value: int):
         """
         Need head
         """
-    def insert_before(self, pos: Node, value: int):
         if value == None:
             return
         new_node = Node(value)
@@ -173,10 +172,10 @@ class SinglyLinkedList(object):
         pos.next = pos.next.next
 
 
-	    """
-	    Suppose the value is different with each other
-	    """
     def delete_by_value(self, value: int):
+        """
+        Suppose the value is different with each other
+        """
         if self.__head == None or value == None:
             return
         pos = self.__head
@@ -204,6 +203,28 @@ class SinglyLinkedList(object):
             pos = pos.next
         print("None", end='\n')
 
+'''
+TODO
+    def inverse_linked_list(self):
+'''
+
+'''
+    def palindrome(self):
+        """
+        1. What is palindrome?
+        A palindrome is a word or a phrase that is the same whether
+        you read it backward or forward, for example, the word "refer", the list "1-2-3-2-1".
+        
+        2. How to inverse list?
+        Keep list sequence, and just change the direction of node.next
+        Ex:
+                a --> b --> c --> ......--> m -->None
+         None<--a <-- b <-- c <-- ......<-- m
+
+        3. How to judge a singly linked list is a palindrome list or not?
+        Check weather the list is equal to the inverse list itself.
+        """
+'''
 
 if __name__ == "__main__":
     list = SinglyLinkedList()
