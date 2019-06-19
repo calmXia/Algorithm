@@ -203,10 +203,27 @@ class SinglyLinkedList(object):
             pos = pos.next
         print("None", end='\n')
 
-'''
-TODO
+
     def inverse_linked_list(self):
-'''
+        """
+        inverse linked list that has no head
+        1. How to inverse list?
+        Keep list sequence, and just change the direction of node.next
+        Ex:
+                a --> b --> c --> ......--> m -->None
+         None<--a <-- b <-- c <-- ......<-- m
+        """
+        pre = None
+        pos = self.__head
+        next = None
+        while pos != None:
+            next = pos.next
+            pos.next = pre
+            pre = pos
+            pos = next
+        self.__head = pre
+
+
 
 '''
     def palindrome(self):
@@ -214,12 +231,6 @@ TODO
         1. What is palindrome?
         A palindrome is a word or a phrase that is the same whether
         you read it backward or forward, for example, the word "refer", the list "1-2-3-2-1".
-        
-        2. How to inverse list?
-        Keep list sequence, and just change the direction of node.next
-        Ex:
-                a --> b --> c --> ......--> m -->None
-         None<--a <-- b <-- c <-- ......<-- m
 
         3. How to judge a singly linked list is a palindrome list or not?
         Check weather the list is equal to the inverse list itself.
@@ -230,4 +241,7 @@ if __name__ == "__main__":
     list = SinglyLinkedList()
     for i in range(1,6):
         list.insert_value_to_tail(i)
+    list.print_all()
+    print("inverse...")
+    list.inverse_linked_list()
     list.print_all()
