@@ -224,7 +224,22 @@ class SinglyLinkedList(object):
         self.__head = pre
 
 
-
+    def find_middle(self):
+        """
+        find the middle node of singly linked list
+        """
+        p = self.__head
+        q = self.__head
+        if q == None:
+            print("None list")
+            return
+        if q.next == None:  # list of one node
+            return q
+        while q.next != None and q.next.next != None:
+            # print(str(p.data), str(q.data))
+            p = p.next
+            q = q.next.next
+        return p
 '''
     def palindrome(self):
         """
@@ -239,9 +254,12 @@ class SinglyLinkedList(object):
 
 if __name__ == "__main__":
     list = SinglyLinkedList()
-    for i in range(1,6):
+    for i in range(0,7):
         list.insert_value_to_tail(i)
     list.print_all()
-    print("inverse...")
-    list.inverse_linked_list()
-    list.print_all()
+    # print("inverse...")
+    # list.inverse_linked_list()
+    # list.print_all()
+    print("find the middle is...")
+    pos = list.find_middle()
+    print(str(pos.data))
