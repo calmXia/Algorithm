@@ -14,9 +14,9 @@ Date:
 class ArrayStack(object):
     
     def __init__(self, size: int):
-        self.__array_stack = []
         self.__size = size
         self.__count = 0
+        self.__array_stack = [None] * self.__size
 
 
     @property
